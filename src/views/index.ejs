@@ -2,11 +2,30 @@
 <html>
   <head>
     <title>Simple Status Dashboard</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/grids-responsive-min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      .pure-g > div {
+          box-sizing: border-box;
+      }
+      .l-box {
+          padding: 5em;
+      }
+  </style>
   </head>
   <body>
-  <div class="container">
-  <h1 class="header">Hello!</h1>
-  <div id="status"></div>
+  <h1 class="header">Simple Status Dashboard</h1>
+  <div class="pure-g">
+    <div class="pure-u-1-3">
+      <div id="tail_number"></div>
+    </div>
+    <div class="pure-u-1-3">
+      <div id="status"></div>
+    </div>
+    <div class="pure-u-1-3">
+      <div id="last_change"></div>
+    </div>
   </div>
   <script src="js/socket.io.min.js"></script>
   <script>
@@ -14,8 +33,10 @@
 
     socket.on("status", (msg) => {
       var status = document.getElementById('status');
+      var tailNumber = document.getElementById('tail_number')
       console.log("have new status", msg)
       status.textContent = msg.status;
+      tailNumber.textContent = msg.tail_number;
     })
   </script>
   </body>
