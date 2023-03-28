@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple Status Dashboard</title>
+  </head>
+  <body>
+  <div class="container">
+  <h1 class="header">Hello!</h1>
+  <div id="status"></div>
+  </div>
+  <script src="js/socket.io.min.js"></script>
+  <script>
+    var socket = io();
+
+    socket.on("status", (msg) => {
+      var status = document.getElementById('status');
+      console.log("have new status", msg)
+      status.textContent = msg.status;
+    })
+  </script>
+  </body>
+</html>
