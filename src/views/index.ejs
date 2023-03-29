@@ -12,12 +12,19 @@
       .l-box {
           padding: 5em;
       }
+      td {
+        padding-top:20px;
+        padding-bottom:20px;
+        padding-right:20px;
+        text-align: center;
+        font-size: 35px;   
+      }
   </style>
   </head>
   <body>
   <h1 class="header">Simple Status Dashboard</h1>
   <div class="pure-g">
-    <table class="table table-striped" id="status-table">
+    <table class="table table-striped" id="status-table" width="100%">
       <thead>
         <tr>
           <th scope="col">Tail Number</th>
@@ -46,10 +53,17 @@
       let tRows = '';
 
       data.forEach(status => {
-        tRows += `<tr>
-          <th scope="row">${status.tail_number}</th>
-          <td>${status.status}</td>
-          </tr>`;
+        if (status.status == false) {
+          tRows += `<tr style="background-color:#ccff33">
+            <td>${status.tail_number}</td>
+            <td>Ready</td>
+            </tr>`;
+        } else {
+          tRows += `<tr style="background-color:#ff3300">
+            <td>${status.tail_number}</td>
+            <td>Not Ready</td>
+            </tr>`; 
+        }
       })
 
 
