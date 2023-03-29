@@ -7,9 +7,10 @@ curl --location --request POST 'https://09fcd60d-69d2-414d-bc66-9c2475077258.clo
     "commands": [{
       "method": "upsert",
       "collection": "status",
-      "id": 99,
+      "id": "'$2'",
       "value": {
-        "tail_number": "99",
+        "isDeleted": false,
+        "tail_number": "'$2'",
         "status": '$1'
       }
     }]

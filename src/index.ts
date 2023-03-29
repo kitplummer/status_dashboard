@@ -11,26 +11,6 @@ let status: Document[] = []
 import express from "express";
 import http from "http";
 
-// Socket Stuffs
-// interface ServerToClientEvents {
-//   noArg: () => void;
-//   basicEmit: (a: number, b: string, c: Buffer) => void;
-//   withAck: (d: string, callback: (e: number) => void) => void;
-// }
-
-// interface ClientToServerEvents {
-//   hello: () => void;
-// }
-
-// interface InterServerEvents {
-//   ping: () => void;
-// }
-
-// interface SocketData {
-//   name: string;
-//   age: number;
-// }
-
 const app:Express = express();
 const server = http.createServer(app);
 const io = new Server(server);
@@ -60,11 +40,11 @@ async function main() {
   subscription = ditto.store.collection("status").findAll().subscribe()
   liveQuery = ditto.store.collection("status").findAll().observeLocal((docs, event) => {
     status = docs
+    console.log('emit status: ', status.map((state) => state.value)[0]);
     io.on('connection', (socket) => {
-      console.log('emit status ', status.map((state) => state.value)[0]);
-      io.emit("status", status.map((state) => state.value)[0] )
+      io.emit("status", status.map((state) => state.value) )
     });
-    io.emit("status", status.map((state) => state.value)[0]  )
+    io.emit("status", status.map((state) => state.value) )
   })
 
 
