@@ -2,6 +2,8 @@
 
 Built out from https://docs.ditto.live and https://portal.ditto.live
 
+![screenshot](./screenshot.png)
+
 ## Stuffs
 
 Uses socket.io to create a live view of Ditto data (well just a single status for now).
